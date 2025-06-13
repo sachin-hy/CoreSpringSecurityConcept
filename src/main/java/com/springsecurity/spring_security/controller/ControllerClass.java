@@ -49,27 +49,20 @@ public class ControllerClass {
 		
 		try {
 		   // check if user already exist
-		
-			System.out.println("email = " + email);
-	     	Users checkUserPresent = userService.getUser(email);
+	            Users checkUserPresent = userService.getUser(email);
 		
 		   if (checkUserPresent != null) {
 		      return new ResponseEntity<>("User Already Registered", HttpStatus.CONFLICT);
 		    }
 	
-		  
-		
-    	   String otp = RandomStringUtils.randomNumeric(6);
-	   
-    	   //sned otp 
-    	   emailService.sendEmail(email, "otp verification email", otp);
+		 String otp = RandomStringUtils.randomNumeric(6);
+	        //sned otp 
+    	        emailService.sendEmail(email, "otp verification email", otp);
 	       // check unique otp or not
 	
 	       //save otp
 	       OtpSchema savedOtp = otpService.saveOtp(otp,email);
-	   
-	     
-	     
+			
 	     return new ResponseEntity<>("Otp sent Successfully",HttpStatus.OK);
 	   }catch(Exception e)
 		{
