@@ -116,4 +116,14 @@ public class ControllerClass {
 	{
 		return new ResponseEntity<>("error page url is called",HttpStatus.OK);
 	}
+
+	@RequestMapping("/api/logout")
+	public ResponseEntity<String> logoutPage()
+	{
+		
+		SecurityContextHolder.getContext().setAuthentication(null);
+
+		
+		return new ResponseEntity<>("Logout successfull",HttpStatus.OK);
+	}
 }
